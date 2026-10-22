@@ -11,7 +11,7 @@
 
 # 🇻🇳 Tiếng Việt
 
-Thiết bị hiển thị thông minh dạng màn hình tròn (đồng hồ đeo tay hoặc màn hình phụ gắn ghi-đông xe máy/xe đạp), sử dụng vi điều khiển **ESP32-C3** kết hợp với **màn hình tròn TFT LCD 1.28 inch (GC9A01, độ phân giải 240x240)**. 
+Thiết bị hiển thị thông minh dạng màn hình tròn (gắn ghi-đông xe máy/xe đạp), sử dụng vi điều khiển **ESP32-C3** kết hợp với **màn hình tròn TFT LCD 1.28 inch (GC9A01, độ phân giải 240x240)**. 
 
 Thiết bị giao tiếp không dây với điện thoại Android qua **Bluetooth Low Energy (BLE)** thông qua ứng dụng **Chronos**, hiển thị trực tiếp dữ liệu chỉ đường theo thời gian thực từ **Google Maps**, thông báo cuộc gọi đến nổi bật, và phát hoạt ảnh GIF sinh động khi ở chế độ chờ.
 
@@ -20,25 +20,24 @@ Thiết bị giao tiếp không dây với điện thoại Android qua **Bluetoo
 ## ✨ Tính năng nổi bật
 
 - 🗺️ **Giao diện Dẫn đường Google Maps thời gian thực**:
-  - Mũi tên chỉ hướng rẽ kích thước lớn $96\times96\text{px}$ (thuật toán tự động nhận diện màu nền, hòa viền liền mạch, không bị ô vuông viền icon).
-  - Khoảng cách đến khúc rẽ tiếp theo / Hành động rẽ (`nav.title`, ví dụ: `200 m`, `Rẽ phải`).
-  - Tên tuyến đường tiếp theo (`nav.directions`, tự động ngắt dòng thông minh khi tên đường dài).
-  - Quãng đường tổng còn lại & Thời gian di chuyển đến đích (`nav.distance` & `nav.duration`, ví dụ: `Còn 12 km - 18 ph`).
+  - Mũi tên chỉ hướng rẽ kích thước lớn $96\times96\text{px}$.
+  - Khoảng cách đến khúc rẽ tiếp theo / Hành động rẽ (ví dụ: `200 m`, `Rẽ phải`).
+  - Tên tuyến đường tiếp theo (tự động ngắt dòng thông minh khi tên đường dài).
+  - Quãng đường tổng còn lại & Thời gian di chuyển đến đích (ví dụ: `Còn 12 km - 18 ph`).
 - ⭕ **Thiết kế tối ưu cho màn hình tròn (240x240)**:
   - Phân chia các Zone tọa độ hiển thị độc lập, không bị lẹm hay tràn ra ngoài viền kính cong.
-  - Vùng quét xóa chữ (`fillRect`) kích thước cố định theo Zone, loại bỏ 100% hiện tượng đọng chữ cũ ở rìa trên/dưới khi đổi tên đường.
 - 🔤 **Bộ khử dấu tiếng Việt & Lọc Emoji chuyên dụng**:
   - Bảng tra chuẩn 134 ký tự tiếng Việt nguyên bản, chuyển đổi chính xác mọi dấu câu sang ASCII chuẩn (ví dụ: `Về hướng Đ. Ng. Sĩ Liên` $\to$ `Ve huong D. Ng. Si Lien`).
-  - Tích hợp kiểm tra nhanh `hasNonAscii`, bỏ qua tra bảng khi gặp chuỗi số/chữ tiếng Anh giúp tiết kiệm tối đa chu kỳ CPU.
+  - Tích hợp kiểm tra nhanh, bỏ qua tra bảng khi gặp chuỗi số/chữ tiếng Anh giúp tiết kiệm tối đa chu kỳ CPU.
   - Tự động lọc sạch Emoji và ký tự ngoài chuẩn ASCII, tránh tràn bộ đệm hiển thị.
 - 📞 **Cảnh báo cuộc gọi đến rực rỡ**:
-  - Tự động chuyển toàn bộ màn hình sang màu đỏ cảnh báo (`TFT_RED`) kèm tên người gọi đến.
-  - Mũi tên chỉ đường tự động đảo màu sang trắng sáng (`TFT_WHITE`) trên nền đỏ, giúp người lái xe vừa biết có cuộc gọi vừa không bị lạc hướng.
+  - Tự động chuyển toàn bộ màn hình sang màu đỏ cảnh báo kèm tên người gọi đến.
+  - Mũi tên chỉ đường tự động đảo màu sang trắng sáng trên nền đỏ, giúp người lái xe vừa biết có cuộc gọi vừa không bị lạc hướng.
 - 🎞️ **Phát Random 3 GIF ở chế độ chờ (Standby)**:
-  - Tận dụng bảng phân vùng mở rộng (`3.875 MB app0`), nạp sẵn cả 3 hình ảnh động GIF $240\times240$ vào bộ nhớ Flash.
-  - Sử dụng bộ tạo số ngẫu nhiên phần cứng chân thực của ESP32 (`esp_random()`) để chọn ngẫu nhiên 1 GIF khi mở nguồn và mỗi lần mất kết nối BLE.
+  - Nạp sẵn 3 hình ảnh động GIF $240\times240$ vào bộ nhớ Flash.
+  - Sử dụng bộ random của ESP32 (`esp_random()`) để chọn ngẫu nhiên 1 GIF khi mở nguồn và mỗi lần mất kết nối BLE.
 - ⚡ **Cơ chế BLE Keep-Alive**:
-  - ESP32 chủ động gửi gói tin ping định kỳ lên điện thoại, ngăn chặn Android tắt tiến trình chạy ngầm của Chronos khi chạy đường dài.
+  - ESP32 chủ động gửi gói tin ping định kỳ lên điện thoại, ngăn chặn Android tắt tiến trình chạy ngầm của App Chronos khi chạy đường dài.
 
 ---
 
@@ -110,32 +109,31 @@ pio run -t upload --upload-port <CỔNG_COM_CỦA_BẠN>
 
 # 🇬🇧 English
 
-A smart, wearable/motorcycle round navigation display powered by an **ESP32-C3** and a **1.28-inch GC9A01 round TFT LCD (240x240)**. It pairs with an Android smartphone via **BLE** using the **Chronos** app to provide real-time, turn-by-turn Google Maps navigation, high-contrast incoming call alerts, and random animated GIF standby screens.
+A smart round navigation display (mounted on motorcycle/bicycle handlebars) powered by an **ESP32-C3** and a **1.28-inch GC9A01 round TFT LCD (240x240)**. It pairs wirelessly with an Android smartphone via **Bluetooth Low Energy (BLE)** using the **Chronos** app to provide real-time Google Maps turn-by-turn navigation, prominent incoming call alerts, and vibrant animated GIF standby screens.
 
 ---
 
 ## ✨ Features
 
-- 🗺️ **Turn-by-Turn Navigation Interface**:
-  - 96x96 pixel scaled turn maneuver arrow (adaptive corner pixel color blending, zero box artifact).
-  - Next maneuver / distance to next turn (`nav.title`, e.g., `200 m`, `Turn right`).
-  - Next street name (`nav.directions`, with auto multi-line text wrapping).
-  - Total remaining distance & travel time to destination (`nav.distance` & `nav.duration`).
-- ⭕ **Circular Screen UI Layout (240x240)**:
-  - Strict zone-based coordinate allocation prevents text from clipping outside the circular bezel.
-  - Dedicated wipe boundaries eliminate lingering old text fragments when street names change.
-- 🔤 **Vietnamese Transliteration & Emoji Sanitizer**:
-  - Full 134-character lookup table converts Vietnamese accented text to clean ASCII without font corruption.
-  - Fast-path ASCII check (`hasNonAscii`) for zero overhead on numeric & standard English data.
-  - Strips non-printable symbols & emojis automatically.
-- 📞 **High-Contrast Incoming Call Alert**:
-  - Full-screen high-contrast red alert (`TFT_RED`) with caller name.
-  - Automatically inverts navigation arrow to bright white on red, keeping live navigation visible while ringing.
-- 🎞️ **Multi-GIF Standby Mode (Randomized)**:
-  - Extended partition table (`3.875 MB app0`) accommodates 3 full 240x240 GIF animations in Flash memory.
-  - Uses ESP32 hardware True Random Number Generator (`esp_random()`) to select a random GIF on boot and on every BLE disconnect.
-- ⚡ **BLE Keep-Alive Ping**:
-  - Periodic ping keeps the BLE link active and prevents Android OS battery optimization from killing background navigation updates.
+- 🗺️ **Real-Time Google Maps Navigation Interface**:
+  - Large $96\times96\text{px}$ turn maneuver arrow.
+  - Distance to next turn / Next maneuver action (e.g., `200 m`, `Turn right`).
+  - Next street name (smart automatic word-wrapping for long road names).
+  - Total remaining distance & estimated travel time to destination (e.g., `12 km - 18 min`).
+- ⭕ **Optimized for Circular Displays (240x240)**:
+  - Independent coordinate zones prevent elements from clipping or overflowing outside the curved glass bezel.
+- 🔤 **Dedicated Vietnamese Transliteration & Emoji Filter**:
+  - Comprehensive 134-character lookup table converts Vietnamese diacritics to clean ASCII (e.g., `Về hướng Đ. Ng. Sĩ Liên` $\to$ `Ve huong D. Ng. Si Lien`).
+  - Built-in fast check skips table lookup for English/numeric text to save CPU cycles.
+  - Automatically strips emojis and non-standard ASCII characters to prevent display buffer overflow.
+- 📞 **Prominent Incoming Call Alert**:
+  - Screen turns bright red with caller name upon incoming call.
+  - Turn arrow inverts to bright white on red background, helping riders notice calls without losing navigation direction.
+- 🎞️ **Random 3-GIF Standby Mode**:
+  - Preloads 3 full $240\times240$ animated GIFs directly into Flash memory.
+  - Uses ESP32 random generator (`esp_random()`) to select a random GIF on boot and whenever BLE disconnects.
+- ⚡ **BLE Keep-Alive Mechanism**:
+  - ESP32 periodically sends ping packets to the phone, preventing Android from killing the Chronos app background process during long rides.
 
 ---
 
