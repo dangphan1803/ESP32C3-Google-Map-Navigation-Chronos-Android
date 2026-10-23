@@ -21,9 +21,11 @@ Thiết bị giao tiếp không dây với điện thoại Android qua **Bluetoo
 
 <div align="center">
 
-### 🎬 Video Demo hoạt động thực tế (Chỉ đường & Cuộc gọi)
+### 🎬 Video Demo hoạt động thực tế (~1 phút)
 
-![Video Demo Hoạt Động](docs/images/demo.gif)
+[![Xem Video Demo](docs/images/video_thumbnail.jpg)](docs/images/Demo.mp4)
+
+*👉 **[Bấm vào đây (hoặc bấm vào hình trên) để xem toàn bộ Video Demo trên GitHub](docs/images/Demo.mp4)***
 
 </div>
 
@@ -180,9 +182,11 @@ A smart round navigation display (mounted on motorcycle/bicycle handlebars) powe
 
 <div align="center">
 
-### 🎬 Real-Life Demo Video (Navigation & Call Alert)
+### 🎬 Real-Life Demo Video (~1 minute)
 
-![Live Action Demo](docs/images/demo.gif)
+[![Watch Demo Video](docs/images/video_thumbnail.jpg)](docs/images/Demo.mp4)
+
+*👉 **[Click here (or click the thumbnail above) to watch the full demo video on GitHub](docs/images/Demo.mp4)***
 
 </div>
 
