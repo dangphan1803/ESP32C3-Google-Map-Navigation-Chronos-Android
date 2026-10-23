@@ -17,6 +17,33 @@ Thiết bị giao tiếp không dây với điện thoại Android qua **Bluetoo
 
 ---
 
+## 📸 Demo & Hình ảnh thực tế
+
+<div align="center">
+
+### 🎬 Video Demo hoạt động thực tế (Chỉ đường & Cuộc gọi)
+
+![Video Demo Hoạt Động](docs/images/demo.gif)
+
+</div>
+
+> ⚠️ **Lưu ý về hình ảnh thực tế:**
+> Vết sọc đen ngang trên màn hình trong ảnh chụp và video demo là do trong lúc sử dụng tôi bất cẩn để vật nặng đè lên làm cấn nứt LCD phần cứng, hoàn toàn **không phải lỗi phần mềm hay code hiển thị**.
+
+| Dẫn đường thời gian thực trên xe | Cảnh báo cuộc gọi đến |
+| :---: | :---: |
+| ![Chỉ đường thời gian thực](docs/images/Nav.jpg) | ![Cảnh báo cuộc gọi](docs/images/CallTest1.jpg) |
+
+| Lắp đặt thực tế trên chân gương | Góc nhìn của người lái |
+| :---: | :---: |
+| ![Lắp trên xe máy](docs/images/onbike.jpg) | ![Toàn cảnh góc lái](docs/images/onbike2.jpg) |
+
+| Ngàm đế gắn ghi-đông (10 nam châm tròn) | Mặt lưng hộp thiết bị (10 nam châm tròn) |
+| :---: | :---: |
+| ![Đế gắn ghi-đông](docs/images/giado.jpg) | ![Mặt lưng hộp](docs/images/back.jpg) |
+
+---
+
 ## ✨ Tính năng nổi bật
 
 - 🗺️ **Giao diện Dẫn đường Google Maps thời gian thực**:
@@ -51,6 +78,7 @@ Thiết bị giao tiếp không dây với điện thoại Android qua **Bluetoo
 - **Công tắc nguồn**: [Công tắc gạt 3 chân 2 vị trí (SPDT Slide Switch)](https://shopee.vn/-Linh-Ki%E1%BB%87n-%C4%90i%E1%BB%87n-T%E1%BB%AD-G226-Combo-5-Chi%E1%BA%BFc-C%C3%B4ng-T%E1%BA%AFc-G%E1%BA%A1t-3-Ch%C3%A2n-2-V%E1%BB%8B-Tr%C3%AD-i.1774297521.48868485996) nối tiếp với dây dương (+) từ pin vào chân 5V của ESP32.
 - **Mạch sạc pin**: [Mạch sạc pin Lithium TP4056 có IC bảo vệ cổng Type-C](https://shopee.vn/M%E1%BA%A1ch-s%E1%BA%A1c-pin-TP4056-c%C3%B3-IC-b%E1%BA%A3o-v%E1%BB%87-c%E1%BB%95ng-type-C-USB-i.51294060.22256123109).
 - **Bộ cổng nối dài Type-C đa năng**: [Bộ đầu nối chuyển đổi USB 3.1 Type-C đực/cái sang chân hàn](https://shopee.vn/B%E1%BB%99-10-%C4%90%E1%BA%A7u-N%E1%BB%91i-Chuy%E1%BB%83n-%C4%90%E1%BB%95i-USB-3.1-Type-C-%C4%90%E1%BB%B1c-C%C3%A1i-Sang-D%C3%A2y-C%C3%A1p-H%C3%A0n-24-Ch%E1%BA%A5u-i.1017683881.18280936728) gồm 1 đầu cái gắn lộ ra ngoài vỏ và 1 đầu đực cắm vào ESP32-C3.
+- **Nam châm hít giữ ngàm tháo lắp nhanh**: 20 viên nam châm vĩnh cửu Neodymium tròn đường kính Ø8mm (gồm 10 viên gắn âm vào nắp lưng hộp và 10 viên gắn đối xứng vào đế kẹp ghi-đông, giúp cố định thiết bị cực kỳ chắc chắn, chống rung lắc khi đi xe và tháo lắp nhanh chóng bằng tay).
 
 ### 2. Sơ đồ khối cấp nguồn & truyền dữ liệu:
 ```
@@ -83,6 +111,17 @@ Thiết bị giao tiếp không dây với điện thoại Android qua **Bluetoo
 | **DC** | `GPIO 5` | Data / Command |
 | **RST / RES** | `GPIO 4` | Reset chân cứng |
 | **BLK / BL** | `3.3V` (hoặc GPIO) | Đèn nền màn hình (Backlight) |
+
+---
+
+## 🖨️ Thiết kế & File in 3D (3D Printable Enclosure)
+
+Repository đã chuẩn bị sẵn toàn bộ các file thiết kế 3D hoàn chỉnh trong thư mục [`FIle_in_3D/`](FIle_in_3D/), bạn chỉ cần nạp vào phần mềm cắt lát (Bambu Studio / PrusaSlicer / Cura) để in:
+
+- **[`Hop.3mf`](FIle_in_3D/Hop.3mf)**: Thân hộp chính chứa màn hình GC9A01, bo mạch ESP32-C3, mạch sạc TP4056 và pin Li-Po 800mAh.
+- **[`Nap_Ver2.3mf`](FIle_in_3D/Nap_Ver2.3mf)**: Nắp lưng hộp, tích hợp sẵn 10 khe gắn nam châm tròn Ø8mm để hít chặt vào đế gắn trên xe và lỗ luồn dây bảo hiểm.
+- **[`De_VER2.3mf`](FIle_in_3D/De_VER2.3mf)**: Đế kẹp gắn ghi-đông / chân gương xe máy, chứa 10 vị trí gắn nam châm tròn Ø8mm đối xứng.
+- **[`Van_Oc.3mf`](FIle_in_3D/Van_Oc.3mf)**: Núm ốc vặn tay ren để siết chặt ngàm kẹp vào ghi-đông hoặc chân gương xe máy một cách dễ dàng mà không cần cờ-lê.
 
 ---
 
@@ -137,6 +176,33 @@ A smart round navigation display (mounted on motorcycle/bicycle handlebars) powe
 
 ---
 
+## 📸 Demo & Gallery
+
+<div align="center">
+
+### 🎬 Real-Life Demo Video (Navigation & Call Alert)
+
+![Live Action Demo](docs/images/demo.gif)
+
+</div>
+
+> ⚠️ **Note regarding real-life photos & demo:**
+> The horizontal black streak visible across the circular LCD in the demo photos/video is physical hardware damage caused by accidental pressure from a heavy object on the glass. It is **not a software or rendering bug**.
+
+| Real-Time Navigation Mounted on Bike | Incoming Call Alert |
+| :---: | :---: |
+| ![Google Maps Navigation](docs/images/Nav.jpg) | ![Incoming Call Alert](docs/images/CallTest1.jpg) |
+
+| Motorcycle Mirror Stem Installation | Rider Cockpit View |
+| :---: | :---: |
+| ![Mounted on bike](docs/images/onbike.jpg) | ![Cockpit View](docs/images/onbike2.jpg) |
+
+| Handlebar Mount (10 Neodymium Magnets) | Enclosure Backplate (10 Neodymium Magnets) |
+| :---: | :---: |
+| ![Handlebar mount](docs/images/giado.jpg) | ![Back plate](docs/images/back.jpg) |
+
+---
+
 ## ✨ Features
 
 - 🗺️ **Real-Time Google Maps Navigation Interface**:
@@ -171,6 +237,7 @@ A smart round navigation display (mounted on motorcycle/bicycle handlebars) powe
 - **Power Switch**: [3-Pin 2-Position SPDT Slide Switch](https://shopee.vn/-Linh-Ki%E1%BB%87n-%C4%90i%E1%BB%87n-T%E1%BB%AD-G226-Combo-5-Chi%E1%BA%BFc-C%C3%B4ng-T%E1%BA%AFc-G%E1%BA%A1t-3-Ch%C3%A2n-2-V%E1%BB%8B-Tr%C3%AD-i.1774297521.48868485996) connected in series with the battery positive (+) wire to the ESP32 5V pin.
 - **Charger Module**: [TP4056 3.7V Lithium Battery Charger Module with Protection (Type-C)](https://shopee.vn/M%E1%BA%A1ch-s%E1%BA%A1c-pin-TP4056-c%C3%B3-IC-b%E1%BA%A3o-v%E1%BB%87-c%E1%BB%95ng-type-C-USB-i.51294060.22256123109).
 - **Dual Type-C Power & Data Extension**: [USB 3.1 Type-C Male/Female Solder Connector Set](https://shopee.vn/B%E1%BB%99-10-%C4%90%E1%BA%A7u-N%E1%BB%91i-Chuy%E1%BB%83n-%C4%90%E1%BB%95i-USB-3.1-Type-C-%C4%90%E1%BB%B1c-C%C3%A1i-Sang-D%C3%A2y-C%C3%A1p-H%C3%A0n-24-Ch%E1%BA%A5u-i.1017683881.18280936728) (one female port mounted flush to the outer enclosure, one male port plugged into the ESP32-C3).
+- **Neodymium Magnets**: 20x circular Neodymium permanent magnets (Ø8mm diameter) — 10 magnets embedded in the enclosure backplate and 10 magnets embedded in the handlebar mount for a solid, vibration-resistant, quick-release magnetic lock.
 
 ### 2. Power & Data Wiring Architecture:
 ```
@@ -203,6 +270,17 @@ A smart round navigation display (mounted on motorcycle/bicycle handlebars) powe
 | **DC** | `GPIO 5` | Data / Command |
 | **RST / RES** | `GPIO 4` | Hardware Reset |
 | **BLK / BL** | `3.3V` (or GPIO) | Backlight LED |
+
+---
+
+## 🖨️ 3D Printable Enclosure Files
+
+All 3D design models are ready for 3D printing and available in the [`FIle_in_3D/`](FIle_in_3D/) folder:
+
+- **[`Hop.3mf`](FIle_in_3D/Hop.3mf)**: Main enclosure body housing the GC9A01 round display, ESP32-C3 board, TP4056 charging module, and 800mAh battery.
+- **[`Nap_Ver2.3mf`](FIle_in_3D/Nap_Ver2.3mf)**: Back cover with 10 flush slots for Ø8mm circular magnets and a safety lanyard loop.
+- **[`De_VER2.3mf`](FIle_in_3D/De_VER2.3mf)**: Handlebar / mirror stem clamp mount featuring 10 matching Ø8mm magnet slots for instant magnetic docking.
+- **[`Van_Oc.3mf`](FIle_in_3D/Van_Oc.3mf)**: Ergonomic thumb screw / clamp knob to fasten the mount securely without extra tools.
 
 ---
 
